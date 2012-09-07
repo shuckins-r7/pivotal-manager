@@ -16,3 +16,4 @@
 
 # Ignore generated files
 /config/pivotal.yml
+/*.rdb
