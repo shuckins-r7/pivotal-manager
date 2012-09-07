@@ -1,1 +1,25 @@
-%h2 Hello, world!
+%h2= @d.project.name
+
+
+%h3 Current Sprint
+
+
+%p Latest activity at: #{@d.last_activity_at}
+%p Iteration # #{@d.current_sprint_number}
+
+%h4 Story counts
+%ul
+  %li Unstarted: #{@d.unstarted_stories_count} 
+  %li Started: #{@d.started_stories_count} 
+  %li Finished: #{@d.finished_stories_count} 
+  %li Delivered: #{@d.delivered_stories_count} 
+
+
+%h4 Velocity Points by Status
+%ul 
+  %li Unstarted: #{@d.unstarted_stories_count} 
+  %li Started: #{@d.started_stories_count} 
+  %li Finished: #{@d.finished_stories_count} 
+  %li Delivered: #{@d.delivered_stories_count} 
+  
+

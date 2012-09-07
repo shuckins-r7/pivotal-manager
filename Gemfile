@@ -7,6 +7,7 @@ gem "mongoid", "~> 3.0.0"
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'pivotal-tracker'
+gem 'redis-namespace'
 
 group :development do
   gem 'pry'

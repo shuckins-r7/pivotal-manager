@@ -59,4 +59,16 @@ module PivotalManager
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
+
+
 end
+
+
+## Configure PivotalTracker connection
+client_config = YAML.load(File.open "#{Rails.root}/config/pivotal.yml")["config"]
+PivotalTracker::Client.token   = client_config["token"]
+PivotalTracker::Client.use_ssl = client_config["use_ssl"]
+
+## Redis
+$redis = Redis.new
+RedisConnection = Redis::Namespace.new("pivotal-manager", :redis => $redis)
