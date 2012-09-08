@@ -1,0 +1,4 @@
+## Pivotal Manager
+
+When you start using this to know what you're up to with Pivotal, you'll
+be on your way to owning the whole damn universe.
