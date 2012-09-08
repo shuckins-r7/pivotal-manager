@@ -3,9 +3,17 @@
 
 %h3 Current Sprint
 
+%p starts: #{@d.current_sprint.start_time}
+%p ends: #{@d.current_sprint.end_time}
+
 
 %p Latest activity at: #{@d.last_activity_at}
 %p Iteration # #{@d.current_sprint_number}
+
+%ul
+  -@d.current_stories.each do |s|
+    %li=s.name
+
 
 %h4 Story counts
 %ul

@@ -1,6 +1,6 @@
 class Dashboard
 
-  attr_reader :project, :members, :stories
+  attr_reader :project, :members, :stories, :current_sprint
 
   PIVOTAL_STORY_STATES = ["accepted", "delivered", "finished", "started", "unstarted", "unscheduled"]
   PIVOTAL_STORY_TYPES  = ["bug", "feature", "chore", "release"]
@@ -48,19 +48,38 @@ class Dashboard
     stories.select{|s| s.story_type == type}
   end
 
+  # NOTE: returns current iteration and the next one
+  def current_sprint
+    Iteration.new(load_ruby_object_from_redis "current_iteration")
+  end
+
+  def current_stories
+    current_sprint.stories
+  end
+
+  def current_backlog
+    load_ruby_object_from_redis "current_backlog"
+  end
+
   def load_ruby_object_from_redis(key)
     Marshal.load RedisConnection.get(key)
   end
 
   # TEMP
-  def load_from_pivotal
-    @project = PivotalTracker::Project.find(PivotalManager::PROJECT_ID)
-    @members = PivotalTracker::Membership.all(@project)
+  def self.load_from_pivotal
+    project = PivotalTracker::Project.find(PivotalManager::PROJECT_ID)
+    members = PivotalTracker::Membership.all(project)
+    
+    # Iteration stuff
+    current_iteration = PivotalTracker::Iteration.current(project)
+    current_backlog   = PivotalTracker::Iteration.current_backlog(project)
 
     # Just make this easy to hold while we dev on it -- will probably use Mongo later...?
-    RedisConnection.set('project', Marshal.dump(@project))
-    RedisConnection.set('stories', Marshal.dump(@project.stories.all))
-    RedisConnection.set('members', Marshal.dump(@members))
+    RedisConnection.set('project', Marshal.dump(project))
+    RedisConnection.set('stories', Marshal.dump(project.stories.all))
+    RedisConnection.set('members', Marshal.dump(members))
+    RedisConnection.set('current_iteration', Marshal.dump(current_iteration))
+    RedisConnection.set('current_backlog', Marshal.dump(current_backlog))
   end
 
 end
