@@ -2,9 +2,6 @@ class Dashboard
 
   attr_reader :project, :members, :stories
 
-  # TODO: move to YAML file or Settings object
-  MS_PRO_PROJECT_ID = "537881"
-
   PIVOTAL_STORY_STATES = ["accepted", "delivered", "finished", "started", "unstarted", "unscheduled"]
   PIVOTAL_STORY_TYPES  = ["bug", "feature", "chore", "release"]
 
@@ -57,7 +54,7 @@ class Dashboard
 
   # TEMP
   def load_from_pivotal
-    @project = PivotalTracker::Project.find(MS_PRO_PROJECT_ID)
+    @project = PivotalTracker::Project.find(PivotalManager::PROJECT_ID)
     @members = PivotalTracker::Membership.all(@project)
 
     # Just make this easy to hold while we dev on it -- will probably use Mongo later...?
