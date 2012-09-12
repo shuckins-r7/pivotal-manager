@@ -53,8 +53,12 @@ class Dashboard
     Iteration.new(load_ruby_object_from_redis "current_iteration")
   end
 
-  def current_stories
-    current_sprint.stories
+  def current_stories(type=:all)
+    if type == :all
+      current_sprint.stories
+    else
+      current_sprint.stories.select{|s| s.story_type == type}
+    end
   end
 
   def current_backlog

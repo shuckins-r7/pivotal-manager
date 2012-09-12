@@ -11,8 +11,12 @@
 %p Iteration # #{@d.current_sprint_number}
 
 %ul
-  -@d.current_stories.each do |s|
-    %li=s.name
+  - (Dashboard::PIVOTAL_STORY_TYPES  - ["release"]).each do |type|
+    %li
+      %h4=type.humanize
+      %ul
+        -@d.current_stories(type).each do |s|
+          %li   [#{s.story_type}]#{s.name}
 
 
 %h4 Story counts
