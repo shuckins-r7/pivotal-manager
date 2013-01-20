@@ -1,5 +1,4 @@
-class Dashboard
-
+class DashboardPresenter
   attr_reader :project, :members, :stories, :current_sprint
 
   PIVOTAL_STORY_STATES = ["accepted", "delivered", "finished", "started", "unstarted", "unscheduled"]

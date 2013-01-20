@@ -1,4 +1,4 @@
-class Iteration
+class IterationPresenter
   attr_reader :start_time, :end_time, :stories
 
   def initialize(iteration)

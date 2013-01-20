@@ -60,18 +60,13 @@ module PivotalManager
     config.assets.version = '1.0'
   end
 
+  ## Configure PivotalTracker connection
+  client_config = YAML.load(File.open "#{Rails.root}/config/pivotal.yml")["config"]
+  PivotalTracker::Client.token   = client_config["token"]
+  PivotalTracker::Client.use_ssl = client_config["use_ssl"]
+
+  PROJECT_ID = client_config["project_id"]
 
 end
 
 
-## Configure PivotalTracker connection
-client_config = YAML.load(File.open "#{Rails.root}/config/pivotal.yml")["config"]
-PivotalTracker::Client.token   = client_config["token"]
-PivotalTracker::Client.use_ssl = client_config["use_ssl"]
-
-PivotalManager::PROJECT_ID = client_config["project_id"]
-
-
-## Redis
-#$redis = Redis.new
-#RedisConnection = Redis::Namespace.new("pivotal-manager", :redis => $redis)

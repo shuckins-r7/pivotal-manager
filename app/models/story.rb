@@ -10,8 +10,8 @@
 class Story
   include Mongoid::Document
   
-  # Create a Mongoid document structure from the PivotalTracker::Story class's HappyMapper structure
-  # which maps XML from the PivotalTracker public API to Ruby objects
+  # Set up the fields and relations for the document, mirroring the 
+  # structure of PivotalTracker::Story, which is based on HappyMapper
   #
   # https://github.com/jnunemaker/happymapper
   PivotalTracker::Story.elements.each do |e|
@@ -22,19 +22,10 @@ class Story
     end
   end
 
-  
-  # Populate an empty database w/ all existing PT stories
-  def self.bootstrap!
-    self.all_from_pivotal.each{|s| self.create_from_pt_story(s)}
-  end
-
-  # Fetch all data from PT
-  def self.all_from_pivotal
-    PivotalTracker::Project.find(PivotalManager::PROJECT_ID).stories.all
-  end
+  belongs_to :iteration
 
   # Use refelection to translate a PivotalTracker::Story into a Story (this class)
-  def self.create_from_pt_story(pt_story)
+  def self.new_from_pt_story(pt_story)
     story = self.new
     PivotalTracker::Story.elements.each do |e|
       attr_name = e.name
@@ -45,7 +36,7 @@ class Story
         story.send("#{attr_name}=", pt_story.send(attr_name))
       end
     end
-    story.save
+    story
   end
 
 end

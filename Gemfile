@@ -10,7 +10,7 @@ gem 'pivotal-tracker'
 gem 'redis-namespace'
 
 group :development do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'debugger'
 end
 
