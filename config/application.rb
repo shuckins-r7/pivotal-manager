@@ -73,5 +73,5 @@ PivotalManager::PROJECT_ID = client_config["project_id"]
 
 
 ## Redis
-$redis = Redis.new
-RedisConnection = Redis::Namespace.new("pivotal-manager", :redis => $redis)
+#$redis = Redis.new
+#RedisConnection = Redis::Namespace.new("pivotal-manager", :redis => $redis)
