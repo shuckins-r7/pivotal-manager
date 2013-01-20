@@ -17,3 +17,6 @@
 # Ignore generated files
 /config/pivotal.yml
 /*.rdb
+
+# Ignore RubyMine stuff
+/.idea/*

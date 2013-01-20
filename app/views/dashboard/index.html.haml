@@ -16,7 +16,7 @@
       %h4=type.humanize
       %ul
         -@d.current_stories(type).each do |s|
-          %li #{s.name}
+          %li=s.name
 
 
 %h4 Story counts
