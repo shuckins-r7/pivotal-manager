@@ -21,13 +21,18 @@ class Iteration
     done_iterations   = project.iteration(:done)
     current_iteration = project.iteration(:current)
 
-    # Make Iteration and Story objects
+    # Make Iteration and Story objects for finished stuff
     done_iterations.each do |done|
-      self.new_from_pt_iteration(done).save
+      self.new_from_pt_iteration(done).save!
     end
     
-    # Make current Iteration and associated Stories
-    self.new_from_pt_iteration(current_iteration).save
+    # Make current Iteration and associated Stories for current stuff
+    self.new_from_pt_iteration(current_iteration).save!
+
+
+    # Make the memberships
+    # TODO: upsert here of course
+    project.memberships.all.each{|m| Member.new_member_from_pt(m).save! }
     
   end
 

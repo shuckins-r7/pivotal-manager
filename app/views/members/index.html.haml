@@ -1,0 +1,7 @@
+%table
+  %tr
+    %th Name
+    -@members.each do |m|
+      %tr
+        %td= link_to(m.name, member_path(m))
+

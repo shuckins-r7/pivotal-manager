@@ -23,6 +23,9 @@ class Story
   end
 
   belongs_to :iteration
+  scope :started, where(current_state: "started")
+  scope :finished, where(current_state: "finished")
+
 
   # Use refelection to translate a PivotalTracker::Story into a Story (this class)
   def self.new_from_pt_story(pt_story)

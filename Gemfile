@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails'
 gem 'unicorn'
 gem 'sqlite3'
 gem "mongoid", "~> 3.0.0"
@@ -10,6 +10,7 @@ gem 'pivotal-tracker'
 gem 'redis-namespace'
 
 group :development do
+  gem 'rspec-rails'
   gem 'pry-rails'
   gem 'debugger'
 end
@@ -21,6 +22,7 @@ group :assets do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl'
 end

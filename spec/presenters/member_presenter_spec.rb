@@ -1,5 +1,7 @@
 require "spec_helper"
 
-describe Dashboard do
+describe MemberPresenter do
+
+
   
 end
