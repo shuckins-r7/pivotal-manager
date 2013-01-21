@@ -1,37 +1,6 @@
-%h2= @d.project.name
+%h2 PROJECT NAME TIME HERE LATERSVILLE
 
 
-%h3 Current Sprint
+%h3 Dashboard
 
-%p starts: #{@d.current_sprint.start_time}
-%p ends: #{@d.current_sprint.end_time}
-
-
-%p Latest activity at: #{@d.last_activity_at}
-%p Iteration # #{@d.current_sprint_number}
-
-%ul
-  - (Dashboard::PIVOTAL_STORY_TYPES  - ["release"]).each do |type|
-    %li
-      %h4=type.humanize
-      %ul
-        -@d.current_stories(type).each do |s|
-          %li=s.name
-
-
-%h4 Story counts
-%ul
-  %li Unstarted: #{@d.unstarted_stories_count} 
-  %li Started: #{@d.started_stories_count} 
-  %li Finished: #{@d.finished_stories_count} 
-  %li Delivered: #{@d.delivered_stories_count} 
-
-
-%h4 Velocity Points by Status
-%ul 
-  %li Unstarted: #{@d.unstarted_stories_count} 
-  %li Started: #{@d.started_stories_count} 
-  %li Finished: #{@d.finished_stories_count} 
-  %li Delivered: #{@d.delivered_stories_count} 
-  
 

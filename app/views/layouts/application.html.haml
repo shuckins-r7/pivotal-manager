@@ -8,6 +8,7 @@
           %meta{:content => "", :name => "author"}
             = stylesheet_link_tag    "application", :media => "all"
             = javascript_include_tag "application"
+            = javascript_include_tag "d3.v3.min"
             = csrf_meta_tags
             = yield(:head)
   %body
