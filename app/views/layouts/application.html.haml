@@ -8,7 +8,12 @@
           %meta{:content => "", :name => "author"}
             = stylesheet_link_tag    "application", :media => "all"
             = javascript_include_tag "application"
+
+            -#Graphing via D3 and NVD3
+            -#http://d3js.org/
+            -#http://nvd3.org/
             = javascript_include_tag "d3.v3.min"
+            = javascript_include_tag "nv.d3.min"
             = csrf_meta_tags
             = yield(:head)
   %body

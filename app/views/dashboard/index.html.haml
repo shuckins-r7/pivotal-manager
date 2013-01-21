@@ -3,4 +3,11 @@
 
 %h3 Dashboard
 
+%h4 Current story type breakdown
+.current-stories-bar-chart-wrapper
+
+:javascript
+  var data = [4,6,8,1]
+  d3.select("div.current-stories-bar-chart-wrapper").append("div").attr("class", "chart");
+  
 
