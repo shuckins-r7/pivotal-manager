@@ -1,4 +1,4 @@
-include "spec_helper"
+require "spec_helper"
 
 describe Iteration do
   describe "#bootstrap!" do

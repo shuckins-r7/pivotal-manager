@@ -33,7 +33,7 @@ FactoryGirl.define do
     current_state "started"
     description {FactoryGirl.generate(:feature_description)}
     owned_by "Dudley Snazzypants"
-    requested_by "Dudley Snazzypants"
+    requested_by "Lord Product"
   end
 
 end

@@ -1,8 +1,24 @@
 %h2=member.name
 
 %h3 Current committments
-%table
-  %tr
-    %th Story Type
-    %th Count
-  
+
+-if member.has_current_commitments?
+  %table.current-owned-stories
+    %tr
+      %th Name
+      %th State
+      %th Age
+    -member.current_owned_stories.each do |story|
+      %tr
+        %td=story.name
+        %td=story.current_state
+        %td=time_ago_in_words(story.created_at)
+-else
+  (no current commitments)
+
+%h3 Requested committments
+%ul.current-requested-stories
+  -member.current_requested_stories.each do |story|
+    %li=story.name
+
+

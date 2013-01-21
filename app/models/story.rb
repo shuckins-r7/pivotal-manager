@@ -23,8 +23,15 @@ class Story
   end
 
   belongs_to :iteration
+
   scope :started, where(current_state: "started")
   scope :finished, where(current_state: "finished")
+  scope :delivered, where(current_state: "delivered")
+  scope :active, where(:current_state.in => ["started","finished","delivered"])
+  
+
+  scope :owned_by_member, ->(member){where(owned_by: member.name)}
+  scope :requested_by_member, ->(member){where(requested_by: member.name)}
 
 
   # Use refelection to translate a PivotalTracker::Story into a Story (this class)
