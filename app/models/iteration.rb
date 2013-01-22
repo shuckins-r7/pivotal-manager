@@ -27,19 +27,16 @@ class Iteration
     end
     
     # Make current Iteration and associated Stories for current stuff
-    self.new_from_pt_iteration(current_iteration).save!
-
+    self.iteration_from_pt(current_iteration)
 
     # Make the memberships
-    # TODO: upsert here of course
-    project.memberships.all.each{|m| Member.new_member_from_pt(m).save! }
-    
+    project.memberships.all.each{|m| Member.member_from_pt(m) }
   end
 
   # Map PivotalTracker::Iteration objects to Iteration objects, creating
   # component Story objects in the process
-  def self.new_from_pt_iteration(pt_iteration)
-    iteration = self.new
+  def self.iteration_from_pt(pt_iteration)
+    iteration = self.where(pt_id: pt_iteration.id).first || self.new
     PivotalTracker::Iteration.elements.each do |e|
       attr_name = e.name
       
